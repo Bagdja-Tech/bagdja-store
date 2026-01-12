@@ -1,8 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --primary: #1E293B; /* Slate-800 */
+  --primary-light: #334155; /* Slate-700 */
+  --action-primary: #F97316; /* Orange */
+  --action-primary-hover: #EA580C; /* Orange Darker */
+
+  /* Background Colors */
+  --bg-main: #FFFFFF; /* White */
+  --bg-surface: #FFFFFF; /* White */
+  --bg-section: #F8FAFC; /* Slate-50 */
+  --bg-hover: #F1F5F9; /* Slate-100 */
+
+  /* Text Colors */
+  --text-primary: #0F172A; /* Slate-900 */
+  --text-secondary: #64748B; /* Slate-500 */
+  --text-muted: #94A3B8; /* Slate-400 */
+  --text-on-colored: #FFFFFF; /* White */
+
+  /* Border Colors */
+  --border-default: #E2E8F0; /* Slate-200 */
+  --border-hover: #CBD5E1; /* Slate-300 */
+  --border-focus: #F97316; /* Orange */
+
+  /* Brand Colors */
+  --brand-success: #22C55E; /* Green */
+  --brand-warning: #FACC15; /* Yellow */
+  --brand-error: #EF4444; /* Red */
+  --brand-info: #38BDF8; /* Blue */
+
+  /* Legacy variables for compatibility */
+  --background: var(--bg-main);
+  --foreground: var(--text-primary);
 }
 
 @theme inline {
@@ -12,15 +42,90 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-section);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--action-primary);
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background: var(--action-primary);
+  color: white;
 }

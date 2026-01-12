@@ -1,65 +1,158 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useMemo } from 'react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { CategoryFilter } from '@/components/CategoryFilter';
+import { AppCard } from '@/components/AppCard';
+import { mockApps, mockCategories, getRecommendedApps, searchApps } from '@/lib/mockData';
+import type { App } from '@/types';
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
+
+  // Get recommended apps
+  const recommendedApps = useMemo(() => getRecommendedApps(6), []);
+
+  // Filter apps based on search and category
+  const filteredApps = useMemo(() => {
+    let apps: App[] = mockApps.filter((app) => app.isPublished);
+
+    // Apply category filter
+    if (selectedCategoryId) {
+      apps = apps.filter((app) => app.categoryId === selectedCategoryId);
+    }
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      apps = searchApps(searchQuery, selectedCategoryId);
+    }
+
+    return apps;
+  }, [searchQuery, selectedCategoryId]);
+
+  // Determine which apps to show
+  const displayApps = searchQuery.trim() || selectedCategoryId ? filteredApps : recommendedApps;
+  const showRecommendations = !searchQuery.trim() && !selectedCategoryId;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-[var(--bg-main)]">
+      <Header onSearch={setSearchQuery} />
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Hero Section */}
+        <section className="text-center mb-12 animate-fade-in bg-gradient-to-br from-[var(--primary)] to-[var(--primary-light)] rounded-2xl p-8 md:p-12 text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            Temukan Aplikasi Terbaik untuk Bisnis Anda
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto px-4">
+            Jelajahi koleksi aplikasi berkualitas tinggi yang siap membantu meningkatkan produktivitas dan efisiensi bisnis Anda.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </section>
+
+        {/* Category Filter Section */}
+        <section id="categories" className="mb-8">
+          <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4">
+            Kategori
+          </h2>
+          <CategoryFilter
+            categories={mockCategories}
+            selectedCategoryId={selectedCategoryId}
+            onSelectCategory={setSelectedCategoryId}
+          />
+        </section>
+
+        {/* Apps Section */}
+        <section className="mb-12">
+          {showRecommendations ? (
+            <>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+                  Rekomendasi untuk Anda
+                </h2>
+                <span className="text-sm text-[var(--text-secondary)]">
+                  {recommendedApps.length} aplikasi
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+                  {searchQuery.trim() ? 'Hasil Pencarian' : 'Aplikasi dalam Kategori'}
+                </h2>
+                <span className="text-sm text-[var(--text-secondary)]">
+                  {filteredApps.length} aplikasi ditemukan
+                </span>
+              </div>
+            </>
+          )}
+
+          {/* Apps Grid */}
+          {displayApps.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayApps.map((app) => (
+                <AppCard key={app.id} app={app} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 bg-[var(--bg-section)] rounded-lg border border-[var(--border-default)]">
+              <p className="text-lg text-[var(--text-secondary)] mb-2">
+                Tidak ada aplikasi yang ditemukan
+              </p>
+              <p className="text-sm text-[var(--text-muted)]">
+                Coba ubah kata kunci pencarian atau pilih kategori lain
+              </p>
+            </div>
+          )}
+        </section>
+
+        {/* All Apps Section (if showing recommendations) */}
+        {showRecommendations && (
+          <section className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+                Semua Aplikasi
+              </h2>
+              <span className="text-sm text-[var(--text-secondary)]">
+                {mockApps.filter((app) => app.isPublished).length} aplikasi
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {mockApps
+                .filter((app) => app.isPublished)
+                .map((app) => (
+                  <AppCard key={app.id} app={app} />
+                ))}
+            </div>
+          </section>
+        )}
+
+        {/* Structured Data for Homepage */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Bagdja Store',
+              description: 'Platform terpercaya untuk menemukan aplikasi berkualitas tinggi yang membantu meningkatkan produktivitas dan efisiensi bisnis Anda.',
+              url: 'https://store.bagdja.com',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: 'https://store.bagdja.com/?search={search_term_string}',
+                },
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
       </main>
+
+      <Footer />
     </div>
   );
 }
