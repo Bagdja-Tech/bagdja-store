@@ -42,7 +42,7 @@ export function Header({ onSearch }: HeaderProps) {
       try {
         const balance = await getBalance();
         setGlobalBalance(balance?.global?.balance ?? null);
-        setBalanceCurrency(balance?.global?.currency || 'BP');
+        setBalanceCurrency('BP');
       } catch {
         setGlobalBalance(null);
         setBalanceCurrency('BP');

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { setAccessToken } from "@/lib/auth";
+import { ensureClientToken } from "@/lib/piece-api";
 
 /**
  * Captures `token` from query params on ANY page, stores it, then cleans the URL.
@@ -30,6 +31,13 @@ export function AuthTokenHandler() {
     const nextUrl = `${pathname}${nextParams.toString() ? `?${nextParams.toString()}` : ""}`;
     router.replace(nextUrl);
   }, [searchParams, pathname, router]);
+
+  useEffect(() => {
+    ensureClientToken().catch(() => {
+      // if client token fetch fails, just log but continue
+      console.error("Failed to prefetch client token");
+    });
+  }, []);
 
   return null;
 }

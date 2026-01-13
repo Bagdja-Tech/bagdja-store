@@ -28,7 +28,7 @@ export interface BalanceResponse {
   apps: BalanceItem[];
 }
 
-async function ensureClientToken(): Promise<string> {
+export async function ensureClientToken(): Promise<string> {
   const existing = getClientToken();
   if (existing && !isClientTokenExpired()) return existing;
 
