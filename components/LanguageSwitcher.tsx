@@ -49,11 +49,9 @@ export function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-white/90 hover:text-white transition border border-white/20 hover:border-white/30 bg-white/10 hover:bg-white/20"
+        className="flex items-center gap-1 px-2 py-2 rounded-lg text-sm font-medium text-white/90 hover:text-white transition border border-white/20 hover:border-white/30 bg-white/10 hover:bg-white/20"
       >
-        <span className="text-lg">{currentOption.flag}</span>
-        <span className="hidden sm:inline">{currentOption.label}</span>
-        <span className="sm:hidden">{currentOption.code.toUpperCase()}</span>
+        <span className="text-xl">{currentOption.flag}</span>
         <svg
           className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
           fill="none"
@@ -70,22 +68,21 @@ export function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-[var(--primary)] rounded-lg shadow-lg border border-[var(--primary-light)] py-1 z-50">
+        <div className="absolute right-0 mt-2 w-auto bg-[var(--primary)] rounded-lg shadow-lg border border-[var(--primary-light)] py-1 z-50">
           {languageOptions.map((option) => (
             <button
               key={option.code}
               onClick={() => changeLanguage(option.code)}
-              className={`w-full flex items-center gap-3 px-4 py-2 text-sm text-left transition ${
+              className={`flex items-center justify-center px-3 py-2 text-sm transition ${
                 currentLang === option.code
                   ? "bg-white/20 text-white font-medium"
                   : "text-white/80 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <span className="text-lg">{option.flag}</span>
-              <span>{option.label}</span>
+              <span className="text-xl">{option.flag}</span>
               {currentLang === option.code && (
                 <svg
-                  className="w-4 h-4 ml-auto text-white"
+                  className="w-4 h-4 ml-2 text-white"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >

@@ -2,7 +2,13 @@
   "nav": {
     "home": "首页",
     "categories": "分类",
-    "about": "关于"
+    "about": "关于",
+    "login": "登录"
+  },
+  "header": {
+    "profile": "个人资料",
+    "balance": "余额",
+    "logout": "登出"
   },
   "hero": {
     "title": "为您的企业找到最佳应用",
@@ -54,6 +60,19 @@
     "terms": "条款和条件",
     "privacy": "隐私政策",
     "copyright": "© {year} Bagdja Store. 保留所有权利。"
+  },
+  "login": {
+    "title": "使用 Bagdja 登录",
+    "subtitle": "继续访问 Bagdja Store",
+    "description": "所有身份验证都通过集中式 Bagdja 登录门户进行。点击下方继续。",
+    "button": "前往 Bagdja Login",
+    "help": "需要帮助？"
+  },
+  "callback": {
+    "completingAuth": "完成身份验证...",
+    "noToken": "未收到令牌。请重新登录。",
+    "invalidRedirect": "重定向 URL 无效。请联系支持。",
+    "backToLogin": "返回登录"
   }
 }
 

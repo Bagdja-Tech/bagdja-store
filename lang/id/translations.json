@@ -2,7 +2,13 @@
   "nav": {
     "home": "Beranda",
     "categories": "Kategori",
-    "about": "Tentang"
+    "about": "Tentang",
+    "login": "Masuk"
+  },
+  "header": {
+    "profile": "Profil",
+    "balance": "Saldo",
+    "logout": "Keluar"
   },
   "hero": {
     "title": "Temukan Aplikasi Terbaik untuk Bisnis Anda",
@@ -54,6 +60,19 @@
     "terms": "Syarat & Ketentuan",
     "privacy": "Kebijakan Privasi",
     "copyright": "© {year} Bagdja Store. All rights reserved."
+  },
+  "login": {
+    "title": "Masuk dengan Bagdja",
+    "subtitle": "Untuk melanjutkan ke Bagdja Store",
+    "description": "Semua autentikasi dikelola secara terpusat di Bagdja Login. Klik tombol di bawah untuk melanjutkan.",
+    "button": "Lanjut ke Bagdja Login",
+    "help": "Butuh bantuan?"
+  },
+  "callback": {
+    "completingAuth": "Menyelesaikan autentikasi...",
+    "noToken": "Tidak ada token yang diterima. Silakan coba masuk lagi.",
+    "invalidRedirect": "URL redirect tidak valid. Silakan hubungi dukungan.",
+    "backToLogin": "Kembali ke Login"
   }
 }
 

@@ -2,7 +2,13 @@
   "nav": {
     "home": "Inicio",
     "categories": "Categorías",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "login": "Iniciar sesión"
+  },
+  "header": {
+    "profile": "Perfil",
+    "balance": "Saldo",
+    "logout": "Cerrar sesión"
   },
   "hero": {
     "title": "Encuentra las Mejores Aplicaciones para tu Negocio",
@@ -54,6 +60,19 @@
     "terms": "Términos y Condiciones",
     "privacy": "Política de Privacidad",
     "copyright": "© {year} Bagdja Store. Todos los derechos reservados."
+  },
+  "login": {
+    "title": "Iniciar sesión con Bagdja",
+    "subtitle": "Para continuar en Bagdja Store",
+    "description": "Toda la autenticación se realiza a través de Bagdja Login. Haz clic abajo para continuar.",
+    "button": "Ir a Bagdja Login",
+    "help": "¿Necesitas ayuda?"
+  },
+  "callback": {
+    "completingAuth": "Completando la autenticación...",
+    "noToken": "No se recibió el token. Por favor intenta ingresar de nuevo.",
+    "invalidRedirect": "La URL de redirección no es válida. Contacta al soporte.",
+    "backToLogin": "Volver al inicio de sesión"
   }
 }
 

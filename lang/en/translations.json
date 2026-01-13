@@ -2,7 +2,13 @@
   "nav": {
     "home": "Home",
     "categories": "Categories",
-    "about": "About"
+    "about": "About",
+    "login": "Login"
+  },
+  "header": {
+    "profile": "Profile",
+    "balance": "Balance",
+    "logout": "Logout"
   },
   "hero": {
     "title": "Find the Best Apps for Your Business",
@@ -54,6 +60,19 @@
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "copyright": "© {year} Bagdja Store. All rights reserved."
+  },
+  "login": {
+    "title": "Sign in with Bagdja",
+    "subtitle": "To continue to Bagdja Store",
+    "description": "All authentication happens through the centralized Bagdja Login portal. Click below to continue.",
+    "button": "Go to Bagdja Login",
+    "help": "Need help?"
+  },
+  "callback": {
+    "completingAuth": "Completing authentication...",
+    "noToken": "No token received. Please try logging in again.",
+    "invalidRedirect": "Invalid redirect URL. Please contact support.",
+    "backToLogin": "Back to Login"
   }
 }
 
