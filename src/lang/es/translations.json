@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "categories": "Categorías",
+    "about": "Acerca de"
+  },
+  "hero": {
+    "title": "Encuentra las Mejores Aplicaciones para tu Negocio",
+    "subtitle": "Explora una colección de aplicaciones de alta calidad listas para ayudar a aumentar la productividad y eficiencia de tu negocio."
+  },
+  "search": {
+    "placeholder": "Buscar aplicaciones...",
+    "results": "Resultados de Búsqueda",
+    "categoryResults": "Aplicaciones en Categoría",
+    "noResults": "No se encontraron aplicaciones",
+    "noResultsDesc": "Intenta cambiar las palabras clave de búsqueda o selecciona otra categoría"
+  },
+  "category": {
+    "title": "Categorías",
+    "all": "Todas"
+  },
+  "app": {
+    "recommended": "Recomendado para Ti",
+    "all": "Todas las Aplicaciones",
+    "count": "aplicaciones",
+    "found": "aplicaciones encontradas",
+    "back": "Volver al Inicio",
+    "screenshots": "Capturas de Pantalla",
+    "video": "Video Demo",
+    "pricing": "Elegir Paquete",
+    "products": "Productos Digitales",
+    "productsDesc": "Productos adicionales disponibles para esta aplicación",
+    "license": "Licencia",
+    "subscription": "Suscripción",
+    "buyNow": "Comprar Ahora",
+    "subscribe": "Suscribirse",
+    "buy": "Comprar",
+    "users": "Usuarios",
+    "lifetime": "De por vida",
+    "perMonth": "Por Mes",
+    "perYear": "Por Año",
+    "once": "Pago Único",
+    "rating": "calificación",
+    "reviews": "reseñas",
+    "notFound": "Aplicación No Encontrada",
+    "notFoundDesc": "La aplicación que buscas no está disponible o ha sido eliminada."
+  },
+  "footer": {
+    "description": "Plataforma confiable para encontrar aplicaciones de alta calidad que ayudan a aumentar la productividad y eficiencia empresarial.",
+    "quickLinks": "Enlaces Rápidos",
+    "support": "Soporte",
+    "contact": "Contáctanos",
+    "faq": "Preguntas Frecuentes",
+    "terms": "Términos y Condiciones",
+    "privacy": "Política de Privacidad",
+    "copyright": "© {year} Bagdja Store. Todos los derechos reservados."
+  }
+}
+

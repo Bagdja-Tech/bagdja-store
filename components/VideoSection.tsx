@@ -1,10 +1,17 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
+
 interface VideoSectionProps {
   videoUrl?: string;
 }
 
 export function VideoSection({ videoUrl }: VideoSectionProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+
   if (!videoUrl) {
     return null;
   }
@@ -32,7 +39,7 @@ export function VideoSection({ videoUrl }: VideoSectionProps) {
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4">
-        Video Demo
+        {t.app.video}
       </h2>
       <div className="relative aspect-video rounded-lg overflow-hidden border border-[var(--border-default)] bg-[var(--bg-section)]">
         <iframe

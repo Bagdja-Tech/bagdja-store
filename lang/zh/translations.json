@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "首页",
+    "categories": "分类",
+    "about": "关于"
+  },
+  "hero": {
+    "title": "为您的企业找到最佳应用",
+    "subtitle": "探索高质量应用程序集合，随时帮助提高您的业务生产力和效率。"
+  },
+  "search": {
+    "placeholder": "搜索应用...",
+    "results": "搜索结果",
+    "categoryResults": "分类中的应用",
+    "noResults": "未找到应用",
+    "noResultsDesc": "尝试更改搜索关键词或选择其他分类"
+  },
+  "category": {
+    "title": "分类",
+    "all": "全部"
+  },
+  "app": {
+    "recommended": "为您推荐",
+    "all": "所有应用",
+    "count": "个应用",
+    "found": "个应用已找到",
+    "back": "返回首页",
+    "screenshots": "截图",
+    "video": "演示视频",
+    "pricing": "选择套餐",
+    "products": "数字产品",
+    "productsDesc": "此应用的其他可用产品",
+    "license": "许可证",
+    "subscription": "订阅",
+    "buyNow": "立即购买",
+    "subscribe": "订阅",
+    "buy": "购买",
+    "users": "用户",
+    "lifetime": "终身",
+    "perMonth": "每月",
+    "perYear": "每年",
+    "once": "一次性付款",
+    "rating": "评分",
+    "reviews": "评论",
+    "notFound": "未找到应用",
+    "notFoundDesc": "您要查找的应用不可用或已被删除。"
+  },
+  "footer": {
+    "description": "值得信赖的平台，用于查找有助于提高业务生产力和效率的高质量应用程序。",
+    "quickLinks": "快速链接",
+    "support": "支持",
+    "contact": "联系我们",
+    "faq": "常见问题",
+    "terms": "条款和条件",
+    "privacy": "隐私政策",
+    "copyright": "© {year} Bagdja Store. 保留所有权利。"
+  }
+}
+

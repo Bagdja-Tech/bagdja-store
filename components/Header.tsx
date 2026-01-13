@@ -2,12 +2,19 @@
 
 import Link from 'next/link';
 import { SearchBar } from './SearchBar';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 
 interface HeaderProps {
   onSearch: (query: string) => void;
 }
 
 export function Header({ onSearch }: HeaderProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+
   return (
     <header className="sticky top-0 z-50 bg-[var(--primary)] border-b border-[var(--primary-light)] backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,20 +40,21 @@ export function Header({ onSearch }: HeaderProps) {
               href="/"
               className="text-sm font-medium text-white/90 hover:text-white transition-colors"
             >
-              Beranda
+              {t.nav.home}
             </Link>
             <Link
               href="#categories"
               className="text-sm font-medium text-white/90 hover:text-white transition-colors"
             >
-              Kategori
+              {t.nav.categories}
             </Link>
             <Link
               href="#about"
               className="text-sm font-medium text-white/90 hover:text-white transition-colors"
             >
-              Tentang
+              {t.nav.about}
             </Link>
+            <LanguageSwitcher />
           </nav>
 
           {/* Mobile Menu Button (optional for future) */}

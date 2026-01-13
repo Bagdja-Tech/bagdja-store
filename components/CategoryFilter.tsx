@@ -1,6 +1,8 @@
 'use client';
 
 import { Category } from '@/types';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 
 interface CategoryFilterProps {
   categories: Category[];
@@ -15,6 +17,10 @@ export function CategoryFilter({
   onSelectCategory,
   className = '',
 }: CategoryFilterProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+
   return (
     <div className={`flex flex-wrap gap-2 ${className} animate-fade-in`}>
       <button
@@ -28,7 +34,7 @@ export function CategoryFilter({
           }
         `}
       >
-        Semua
+        {t.category.all}
       </button>
       {categories.map((category) => (
         <button

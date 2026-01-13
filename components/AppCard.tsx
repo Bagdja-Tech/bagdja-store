@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Star, Users } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 import type { App } from '@/types';
 
 interface AppCardProps {
@@ -32,9 +34,13 @@ function formatPriceType(priceType?: string): string {
 }
 
 export function AppCard({ app }: AppCardProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+
   const priceLabel = app.startingPrice
     ? `${formatPriceType(app.priceType)} ${formatPrice(app.startingPrice)}`
-    : 'Hubungi Kami';
+    : t.footer.contact;
 
   const handleClick = (e: React.MouseEvent) => {
     // Prevent any event bubbling that might trigger search
@@ -120,7 +126,7 @@ export function AppCard({ app }: AppCardProps) {
                 {app.userCount >= 1000
                   ? `${(app.userCount / 1000).toFixed(1)}k`
                   : app.userCount}{' '}
-                pengguna
+                {t.app.users}
               </span>
             </div>
           )}

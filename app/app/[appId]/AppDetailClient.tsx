@@ -1,6 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { AppHeader } from '@/components/AppHeader';
@@ -14,19 +15,22 @@ interface AppDetailClientProps {
   app: App;
 }
 
-export function AppDetailClient({ app }: AppDetailClientProps) {
+function AppDetailContent({ app }: AppDetailClientProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handlePurchase = (type: 'license' | 'subscription', id: string) => {
     // Redirect to bagdja-checkout (placeholder)
-    const checkoutUrl = `https://checkout.bagdja.com?type=${type}&id=${id}&appId=${app.id}`;
+    const lang = searchParams.get('lang') || 'id';
+    const checkoutUrl = `https://checkout.bagdja.com?type=${type}&id=${id}&appId=${app.id}&lang=${lang}`;
     window.location.href = checkoutUrl;
   };
 
   const handleSearch = (query: string) => {
     // Only redirect if there's actually a search query
     if (query && query.trim()) {
-      router.push(`/?search=${encodeURIComponent(query.trim())}`);
+      const lang = searchParams.get('lang') || 'id';
+      router.push(`/?search=${encodeURIComponent(query.trim())}&lang=${lang}`);
     }
   };
 
@@ -99,3 +103,10 @@ export function AppDetailClient({ app }: AppDetailClientProps) {
   );
 }
 
+export function AppDetailClient({ app }: AppDetailClientProps) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[var(--bg-main)] flex items-center justify-center">Loading...</div>}>
+      <AppDetailContent app={app} />
+    </Suspense>
+  );
+}

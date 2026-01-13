@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Find the Best Apps for Your Business",
+    "subtitle": "Explore a collection of high-quality applications ready to help increase your business productivity and efficiency."
+  },
+  "search": {
+    "placeholder": "Search apps...",
+    "results": "Search Results",
+    "categoryResults": "Apps in Category",
+    "noResults": "No apps found",
+    "noResultsDesc": "Try changing your search keywords or select another category"
+  },
+  "category": {
+    "title": "Categories",
+    "all": "All"
+  },
+  "app": {
+    "recommended": "Recommended for You",
+    "all": "All Apps",
+    "count": "apps",
+    "found": "apps found",
+    "back": "Back to Home",
+    "screenshots": "Screenshots",
+    "video": "Demo Video",
+    "pricing": "Choose Package",
+    "products": "Digital Products",
+    "productsDesc": "Additional products available for this app",
+    "license": "License",
+    "subscription": "Subscription",
+    "buyNow": "Buy Now",
+    "subscribe": "Subscribe",
+    "buy": "Buy",
+    "users": "Users",
+    "lifetime": "Lifetime",
+    "perMonth": "Per Month",
+    "perYear": "Per Year",
+    "once": "One-time Payment",
+    "rating": "rating",
+    "reviews": "reviews",
+    "notFound": "App Not Found",
+    "notFoundDesc": "The app you are looking for is not available or has been removed."
+  },
+  "footer": {
+    "description": "Trusted platform for finding high-quality applications that help increase business productivity and efficiency.",
+    "quickLinks": "Quick Links",
+    "support": "Support",
+    "contact": "Contact Us",
+    "faq": "FAQ",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "copyright": "© {year} Bagdja Store. All rights reserved."
+  }
+}
+

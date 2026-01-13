@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Star, Users, Mail } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 import type { App } from '@/types';
 
 interface AppHeaderProps {
@@ -10,6 +12,10 @@ interface AppHeaderProps {
 }
 
 export function AppHeader({ app }: AppHeaderProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+
   return (
     <div className="mb-8">
       {/* Back Button */}
@@ -18,7 +24,7 @@ export function AppHeader({ app }: AppHeaderProps) {
         className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] mb-6 transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        Kembali ke Beranda
+        {t.app.back}
       </Link>
 
       {/* App Info */}
@@ -69,7 +75,7 @@ export function AppHeader({ app }: AppHeaderProps) {
                 </span>
                 {app.ratingCount && (
                   <span className="text-sm text-[var(--text-secondary)]">
-                    ({app.ratingCount} ulasan)
+                    ({app.ratingCount} {t.app.reviews})
                   </span>
                 )}
               </div>
@@ -82,7 +88,7 @@ export function AppHeader({ app }: AppHeaderProps) {
                   {app.userCount >= 1000
                     ? `${(app.userCount / 1000).toFixed(1)}k`
                     : app.userCount}{' '}
-                  pengguna
+                  {t.app.users}
                 </span>
               </div>
             )}

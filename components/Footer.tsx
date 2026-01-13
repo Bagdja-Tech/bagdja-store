@@ -1,6 +1,14 @@
+'use client';
+
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 
 export function Footer() {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+
   return (
     <footer className="bg-[var(--primary)] border-t border-[var(--primary-light)] mt-16 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -16,7 +24,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-white/80 max-w-md mb-4">
-              Platform terpercaya untuk menemukan aplikasi berkualitas tinggi yang membantu meningkatkan produktivitas dan efisiensi bisnis Anda.
+              {t.footer.description}
             </p>
             <div className="flex gap-4">
               <a
@@ -58,7 +66,7 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-semibold text-white mb-4">
-              Tautan Cepat
+              {t.footer.quickLinks}
             </h3>
             <ul className="space-y-2">
               <li>
@@ -66,7 +74,7 @@ export function Footer() {
                   href="/"
                   className="text-sm text-white/80 hover:text-white transition-colors"
                 >
-                  Beranda
+                  {t.nav.home}
                 </Link>
               </li>
               <li>
@@ -74,7 +82,7 @@ export function Footer() {
                   href="#categories"
                   className="text-sm text-white/80 hover:text-white transition-colors"
                 >
-                  Kategori
+                  {t.nav.categories}
                 </Link>
               </li>
               <li>
@@ -82,7 +90,7 @@ export function Footer() {
                   href="#about"
                   className="text-sm text-white/80 hover:text-white transition-colors"
                 >
-                  Tentang Kami
+                  {t.nav.about}
                 </Link>
               </li>
               <li>
@@ -101,7 +109,7 @@ export function Footer() {
           {/* Support */}
           <div>
             <h3 className="text-sm font-semibold text-white mb-4">
-              Bantuan
+              {t.footer.support}
             </h3>
             <ul className="space-y-2">
               <li>
@@ -109,7 +117,7 @@ export function Footer() {
                   href="mailto:support@bagdja.com"
                   className="text-sm text-white/80 hover:text-white transition-colors"
                 >
-                  Hubungi Kami
+                  {t.footer.contact}
                 </a>
               </li>
               <li>
@@ -117,7 +125,7 @@ export function Footer() {
                   href="/faq"
                   className="text-sm text-white/80 hover:text-white transition-colors"
                 >
-                  FAQ
+                  {t.footer.faq}
                 </a>
               </li>
               <li>
@@ -125,7 +133,7 @@ export function Footer() {
                   href="/terms"
                   className="text-sm text-white/80 hover:text-white transition-colors"
                 >
-                  Syarat & Ketentuan
+                  {t.footer.terms}
                 </a>
               </li>
               <li>
@@ -133,7 +141,7 @@ export function Footer() {
                   href="/privacy"
                   className="text-sm text-white/80 hover:text-white transition-colors"
                 >
-                  Kebijakan Privasi
+                  {t.footer.privacy}
                 </a>
               </li>
             </ul>
@@ -141,9 +149,9 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-[var(--border-default)]">
+        <div className="mt-8 pt-8 border-t border-[var(--primary-light)]">
           <p className="text-sm text-center text-white/60">
-            © {new Date().getFullYear()} Bagdja Store. All rights reserved.
+            {t.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
           </p>
         </div>
       </div>

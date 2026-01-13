@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Check, Key, CreditCard } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 import type { App, License, Plan } from '@/types';
 
 interface PricingSectionProps {
@@ -19,6 +21,10 @@ function formatPrice(price: number): string {
 }
 
 export function PricingSection({ app, onPurchase }: PricingSectionProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+  
   const [selectedType, setSelectedType] = useState<'license' | 'subscription'>(
     app.licenses && app.licenses.length > 0 ? 'license' : 'subscription'
   );
@@ -33,7 +39,7 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-6">
-        Pilih Paket
+        {t.app.pricing}
       </h2>
 
       {/* Type Selector */}
@@ -51,7 +57,7 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
             `}
           >
             <Key className="h-4 w-4 inline-block mr-2" />
-            Lisensi
+            {t.app.license}
           </button>
           <button
             onClick={() => setSelectedType('subscription')}
@@ -65,7 +71,7 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
             `}
           >
             <CreditCard className="h-4 w-4 inline-block mr-2" />
-            Berlangganan
+            {t.app.subscription}
           </button>
         </div>
       )}
@@ -81,7 +87,7 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
             >
               <div className="mb-4">
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-                  {license.maxUsers} Pengguna
+                  {license.maxUsers} {t.app.users}
                 </h3>
                 {license.expTime && (
                   <p className="text-sm text-[var(--text-secondary)]">
@@ -90,7 +96,7 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
                 )}
                 {!license.expTime && (
                   <p className="text-sm text-[var(--text-secondary)]">
-                    Lifetime
+                    {t.app.lifetime}
                   </p>
                 )}
               </div>
@@ -103,7 +109,7 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
                 onClick={() => onPurchase('license', license.id)}
                 className="w-full py-2.5 px-4 bg-[var(--action-primary)] text-white rounded-lg font-medium hover:bg-[var(--action-primary-hover)] transition-colors"
               >
-                Beli Sekarang
+                {t.app.buyNow}
               </button>
             </div>
           ))}
@@ -129,9 +135,9 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
                   </p>
                 )}
                 <div className="text-sm text-[var(--text-secondary)]">
-                  {plan.duration === 'monthly' && 'Per Bulan'}
-                  {plan.duration === 'yearly' && 'Per Tahun'}
-                  {plan.duration === 'lifetime' && 'Sekali Bayar'}
+                  {plan.duration === 'monthly' && t.app.perMonth}
+                  {plan.duration === 'yearly' && t.app.perYear}
+                  {plan.duration === 'lifetime' && t.app.once}
                 </div>
               </div>
               <div className="mb-4">
@@ -153,7 +159,7 @@ export function PricingSection({ app, onPurchase }: PricingSectionProps) {
                 onClick={() => onPurchase('subscription', plan.id)}
                 className="w-full py-2.5 px-4 bg-[var(--action-primary)] text-white rounded-lg font-medium hover:bg-[var(--action-primary-hover)] transition-colors"
               >
-                Berlangganan
+                {t.app.subscribe}
               </button>
             </div>
           ))}

@@ -1,6 +1,8 @@
 'use client';
 
 import { ShoppingBag } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 import type { Product } from '@/types';
 
 interface ProductsSectionProps {
@@ -17,6 +19,10 @@ function formatPrice(price: number): string {
 }
 
 export function ProductsSection({ products }: ProductsSectionProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+
   if (!products || products.length === 0) {
     return null;
   }
@@ -25,10 +31,10 @@ export function ProductsSection({ products }: ProductsSectionProps) {
     <div className="mb-8">
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
         <ShoppingBag className="h-6 w-6 text-[var(--action-primary)]" />
-        Produk Digital
+        {t.app.products}
       </h2>
       <p className="text-sm text-[var(--text-secondary)] mb-6">
-        Produk tambahan yang tersedia untuk aplikasi ini
+        {t.app.productsDesc}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {products.map((product, index) => (
@@ -54,7 +60,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                 {formatPrice(product.price)}
               </span>
               <button className="px-4 py-2 bg-[var(--action-primary)] text-white rounded-lg text-sm font-medium hover:bg-[var(--action-primary-hover)] transition-colors">
-                Beli
+                {t.app.buy}
               </button>
             </div>
           </div>

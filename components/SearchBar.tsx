@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -9,7 +11,12 @@ interface SearchBarProps {
   className?: string;
 }
 
-export function SearchBar({ onSearch, placeholder = 'Cari aplikasi...', className = '' }: SearchBarProps) {
+export function SearchBar({ onSearch, placeholder, className = '' }: SearchBarProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+  const defaultPlaceholder = placeholder || t.search.placeholder;
+  
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,7 +60,7 @@ export function SearchBar({ onSearch, placeholder = 'Cari aplikasi...', classNam
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder={placeholder}
+          placeholder={defaultPlaceholder}
           className={`flex-1 bg-transparent outline-none ${isFocused ? 'text-[var(--text-primary)] placeholder:text-[var(--text-muted)]' : 'text-white placeholder:text-white/60'}`}
         />
         {query && (

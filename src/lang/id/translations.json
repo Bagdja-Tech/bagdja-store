@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "categories": "Kategori",
+    "about": "Tentang"
+  },
+  "hero": {
+    "title": "Temukan Aplikasi Terbaik untuk Bisnis Anda",
+    "subtitle": "Jelajahi koleksi aplikasi berkualitas tinggi yang siap membantu meningkatkan produktivitas dan efisiensi bisnis Anda."
+  },
+  "search": {
+    "placeholder": "Cari aplikasi...",
+    "results": "Hasil Pencarian",
+    "categoryResults": "Aplikasi dalam Kategori",
+    "noResults": "Tidak ada aplikasi yang ditemukan",
+    "noResultsDesc": "Coba ubah kata kunci pencarian atau pilih kategori lain"
+  },
+  "category": {
+    "title": "Kategori",
+    "all": "Semua"
+  },
+  "app": {
+    "recommended": "Rekomendasi untuk Anda",
+    "all": "Semua Aplikasi",
+    "count": "aplikasi",
+    "found": "aplikasi ditemukan",
+    "back": "Kembali ke Beranda",
+    "screenshots": "Screenshots",
+    "video": "Video Demo",
+    "pricing": "Pilih Paket",
+    "products": "Produk Digital",
+    "productsDesc": "Produk tambahan yang tersedia untuk aplikasi ini",
+    "license": "Lisensi",
+    "subscription": "Berlangganan",
+    "buyNow": "Beli Sekarang",
+    "subscribe": "Berlangganan",
+    "buy": "Beli",
+    "users": "Pengguna",
+    "lifetime": "Lifetime",
+    "perMonth": "Per Bulan",
+    "perYear": "Per Tahun",
+    "once": "Sekali Bayar",
+    "rating": "rating",
+    "reviews": "ulasan",
+    "notFound": "Aplikasi Tidak Ditemukan",
+    "notFoundDesc": "Aplikasi yang Anda cari tidak tersedia atau telah dihapus."
+  },
+  "footer": {
+    "description": "Platform terpercaya untuk menemukan aplikasi berkualitas tinggi yang membantu meningkatkan produktivitas dan efisiensi bisnis Anda.",
+    "quickLinks": "Tautan Cepat",
+    "support": "Bantuan",
+    "contact": "Hubungi Kami",
+    "faq": "FAQ",
+    "terms": "Syarat & Ketentuan",
+    "privacy": "Kebijakan Privasi",
+    "copyright": "© {year} Bagdja Store. All rights reserved."
+  }
+}
+

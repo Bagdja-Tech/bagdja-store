@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 
 interface ScreenshotGalleryProps {
   screenshots: string[];
@@ -10,6 +12,9 @@ interface ScreenshotGalleryProps {
 }
 
 export function ScreenshotGallery({ screenshots, appName }: ScreenshotGalleryProps) {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   if (!screenshots || screenshots.length === 0) {
@@ -40,7 +45,7 @@ export function ScreenshotGallery({ screenshots, appName }: ScreenshotGalleryPro
     <>
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4">
-          Screenshots
+          {t.app.screenshots}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {screenshots.map((screenshot, index) => (

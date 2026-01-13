@@ -1,14 +1,20 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { AppCard } from '@/components/AppCard';
 import { mockApps, mockCategories, getRecommendedApps, searchApps } from '@/lib/mockData';
+import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 import type { App } from '@/types';
 
-export default function Home() {
+function HomeContent() {
+  const searchParams = useSearchParams();
+  const lang = getLanguageFromUrl(searchParams);
+  const t = getTranslations(lang);
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
 
@@ -44,17 +50,17 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center mb-12 animate-fade-in bg-gradient-to-br from-[var(--primary)] to-[var(--primary-light)] rounded-2xl p-8 md:p-12 text-white">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Temukan Aplikasi Terbaik untuk Bisnis Anda
+            {t.hero.title}
           </h1>
           <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto px-4">
-            Jelajahi koleksi aplikasi berkualitas tinggi yang siap membantu meningkatkan produktivitas dan efisiensi bisnis Anda.
+            {t.hero.subtitle}
           </p>
         </section>
 
         {/* Category Filter Section */}
         <section id="categories" className="mb-8">
           <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4">
-            Kategori
+            {t.category.title}
           </h2>
           <CategoryFilter
             categories={mockCategories}
@@ -69,10 +75,10 @@ export default function Home() {
             <>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
-                  Rekomendasi untuk Anda
+                  {t.app.recommended}
                 </h2>
                 <span className="text-sm text-[var(--text-secondary)]">
-                  {recommendedApps.length} aplikasi
+                  {recommendedApps.length} {t.app.count}
                 </span>
               </div>
             </>
@@ -80,10 +86,10 @@ export default function Home() {
             <>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
-                  {searchQuery.trim() ? 'Hasil Pencarian' : 'Aplikasi dalam Kategori'}
+                  {searchQuery.trim() ? t.search.results : t.search.categoryResults}
                 </h2>
                 <span className="text-sm text-[var(--text-secondary)]">
-                  {filteredApps.length} aplikasi ditemukan
+                  {filteredApps.length} {t.app.found}
                 </span>
               </div>
             </>
@@ -99,10 +105,10 @@ export default function Home() {
           ) : (
             <div className="text-center py-12 bg-[var(--bg-section)] rounded-lg border border-[var(--border-default)]">
               <p className="text-lg text-[var(--text-secondary)] mb-2">
-                Tidak ada aplikasi yang ditemukan
+                {t.search.noResults}
               </p>
               <p className="text-sm text-[var(--text-muted)]">
-                Coba ubah kata kunci pencarian atau pilih kategori lain
+                {t.search.noResultsDesc}
               </p>
             </div>
           )}
@@ -113,10 +119,10 @@ export default function Home() {
           <section className="mb-12">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
-                Semua Aplikasi
+                {t.app.all}
               </h2>
               <span className="text-sm text-[var(--text-secondary)]">
-                {mockApps.filter((app) => app.isPublished).length} aplikasi
+                {mockApps.filter((app) => app.isPublished).length} {t.app.count}
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -154,5 +160,13 @@ export default function Home() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[var(--bg-main)] flex items-center justify-center">Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
