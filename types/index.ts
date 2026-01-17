@@ -1,4 +1,4 @@
-// TypeScript Types untuk Bagdja Store
+// TypeScript Types untuk Bagdja Store Web
 
 export type LicenseType = 'license' | 'subscription';
 
