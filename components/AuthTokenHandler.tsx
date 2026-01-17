@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { setAccessToken } from "@/lib/auth";
 import { ensureClientToken } from "@/lib/piece-api";
@@ -9,7 +9,7 @@ import { ensureClientToken } from "@/lib/piece-api";
  * Captures `token` from query params on ANY page, stores it, then cleans the URL.
  * This enables redirect_url to point directly to any store page (not only /auth/callback).
  */
-export function AuthTokenHandler() {
+function AuthTokenHandlerContent() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -42,3 +42,10 @@ export function AuthTokenHandler() {
   return null;
 }
 
+export function AuthTokenHandler() {
+  return (
+    <Suspense fallback={null}>
+      <AuthTokenHandlerContent />
+    </Suspense>
+  );
+}
