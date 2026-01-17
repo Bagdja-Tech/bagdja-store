@@ -1,11 +1,12 @@
 'use client';
 
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { Package } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
 
-export default function NotFound() {
+function NotFoundContent() {
   const searchParams = useSearchParams();
   const lang = getLanguageFromUrl(searchParams);
   const t = getTranslations(lang);
@@ -31,3 +32,17 @@ export default function NotFound() {
   );
 }
 
+export default function NotFound() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[var(--bg-main)] flex items-center justify-center">
+        <div className="text-center">
+          <Package className="h-16 w-16 text-[var(--text-muted)] mx-auto mb-4 animate-pulse" />
+          <p className="text-[var(--text-secondary)]">Loading...</p>
+        </div>
+      </div>
+    }>
+      <NotFoundContent />
+    </Suspense>
+  );
+}
