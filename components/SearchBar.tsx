@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
+import { trackEvent } from './GoogleAnalytics';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -30,6 +31,8 @@ export function SearchBar({ onSearch, placeholder, className = '' }: SearchBarPr
 
     const timer = setTimeout(() => {
       onSearch(query);
+      // Track search event
+      trackEvent('search', 'engagement', query.trim());
     }, 300);
 
     return () => clearTimeout(timer);

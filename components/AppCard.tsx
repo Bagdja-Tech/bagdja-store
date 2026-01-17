@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Star, Users } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { getLanguageFromUrl, getTranslations } from '@/lib/translations';
+import { trackEvent } from './GoogleAnalytics';
 import type { App } from '@/types';
 
 interface AppCardProps {
@@ -45,6 +46,8 @@ export function AppCard({ app }: AppCardProps) {
   const handleClick = (e: React.MouseEvent) => {
     // Prevent any event bubbling that might trigger search
     e.stopPropagation();
+    // Track app click event
+    trackEvent('click', 'app_card', app.appName);
   };
 
   return (
