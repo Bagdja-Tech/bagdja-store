@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   description: "Jelajahi koleksi aplikasi berkualitas tinggi yang siap membantu meningkatkan produktivitas dan efisiensi bisnis Anda.",
   keywords: ["aplikasi bisnis", "software indonesia", "aplikasi produktivitas", "bagdja store"],
-  authors: [{ name: "Bagdja Development Group" }],
+  authors: [{ name: "Bagdja Digital" }],
   openGraph: {
     type: "website",
     locale: "id_ID",
